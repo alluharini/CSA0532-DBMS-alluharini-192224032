@@ -1,0 +1,74 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use simats;
+Database changed
+mysql> select*from mentees;
++---------+---------+------+------------+------------+
+| Regno   | Name    | Dept | Adress     | Fathername |
++---------+---------+------+------------+------------+
+| 1971631 | harini  | CSE  | vijayawada | trinadh    |
+|  134567 | meghana | CSE  | guntur     | rahul      |
+| 1524631 | harika  | ECE  | hyderabad  | nani       |
+| 7236482 | kavay   | BA   | vijayawada | vijay      |
+| 1971767 | latha   | BBA  | nellore    | srinu      |
++---------+---------+------+------------+------------+
+5 rows in set (0.00 sec)
+
+
+mysql> update mentees set Dept ="BBA" where Regno=1971631;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++---------+---------+------+------------+------------+
+| Regno   | Name    | Dept | Adress     | Fathername |
++---------+---------+------+------------+------------+
+| 1971631 | harini  | BBA  | vijayawada | trinadh    |
+|  134567 | meghana | CSE  | guntur     | rahul      |
+| 1524631 | harika  | ECE  | hyderabad  | nani       |
+| 7236482 | kavay   | BA   | vijayawada | vijay      |
+| 1971767 | latha   | BBA  | nellore    | srinu      |
++---------+---------+------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update mentees set Adress="chennai" where Name="harini";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+mysql> select*from mentees;
++---------+---------+------+------------+------------+
+| Regno   | Name    | Dept | Adress     | Fathername |
++---------+---------+------+------------+------------+
+| 1971631 | harini  | BBA  | chennai    | trinadh    |
+|  134567 | meghana | CSE  | guntur     | rahul      |
+| 1524631 | harika  | ECE  | hyderabad  | nani       |
+| 7236482 | kavay   | BA   | vijayawada | vijay      |
+| 1971767 | latha   | BBA  | nellore    | srinu      |
++---------+---------+------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from mentees where Fathername="srinu";
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from mentees;
++---------+---------+------+------------+------------+
+| Regno   | Name    | Dept | Adress     | Fathername |
++---------+---------+------+------------+------------+
+| 1971631 | harini  | BBA  | chennai    | trinadh    |
+|  134567 | meghana | CSE  | guntur     | rahul      |
+| 1524631 | harika  | ECE  | hyderabad  | nani       |
+| 7236482 | kavay   | BA   | vijayawada | vijay      |
++---------+---------+------+------------+------------+
+4 rows in set (0.00 sec)
