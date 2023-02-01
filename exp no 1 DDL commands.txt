@@ -1,0 +1,96 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+
+mysql> create database simats;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use simats;
+Database changed
+mysql> create table employees(name varchar(10),age int,salary int,DA int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> use simats;
+Database changed
+mysql> desc employees;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(10) | YES  |     | NULL    |       |
+| age    | int(11)     | YES  |     | NULL    |       |
+| salary | int(11)     | YES  |     | NULL    |       |
+| DA     | int(11)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| rollno   | int(11)     | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| Dob      | varchar(10) | YES  |     | NULL    |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
+| district | varchar(20) | YES  |     | NULL    |       |
+| dept     | varchar(5)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> desc studepartment;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| deptid   | int(20)     | YES  |     | NULL    |       |
+| deptname | varchar(20) | YES  |     | NULL    |       |
+| Rollno   | int(5)      | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> desc empdept;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| empid      | int(11)     | YES  |     | NULL    |       |
+| emdeptname | varchar(15) | YES  |     | NULL    |       |
+| empdeptid  | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+
+mysql> insert into employees values("kavya" , 18 , 30039 , 1231);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from employees;
+   
++--------+------+--------+------+
+| name   | age  | salary | DA   |
++--------+------+--------+------+
+| harini |   17 |  50000 | 5000 |
+| kavya  |   18 |  45000 | 2000 |
+| harini |   17 |  50000 | 2000 |
+| kavya  |   18 |  30039 | 1231 |
++--------+------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_simats |
++------------------+
+| empdept          |
+| employees        |
+| student          |
+| studepartment    |
++------------------+
+4 rows in set (0.00 sec)
+
+
