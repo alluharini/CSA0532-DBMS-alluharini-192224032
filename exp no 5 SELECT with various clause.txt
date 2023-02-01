@@ -1,0 +1,104 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
+
+mysql> use simats;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_simats |
++------------------+
+| empdept          |
+| employees        |
+| mentees          |
+| student          |
+| studepartment    |
++------------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++---------+---------+------+------------+------------+
+| Regno   | Name    | Dept | Adress     | Fathername |
++---------+---------+------+------------+------------+
+| 1971631 | harini  | BBA  | chennai    | trinadh    |
+|  134567 | meghana | CSE  | guntur     | rahul      |
+| 1524631 | harika  | ECE  | hyderabad  | nani       |
+| 7236482 | kavay   | BA   | vijayawada | vijay      |
++---------+---------+------+------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where Dept="ECE";
++---------+--------+------+-----------+------------+
+| Regno   | Name   | Dept | Adress    | Fathername |
++---------+--------+------+-----------+------------+
+| 1524631 | harika | ECE  | hyderabad | nani       |
++---------+--------+------+-----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select*from mentees where Name="harini";
++---------+--------+------+---------+------------+
+| Regno   | Name   | Dept | Adress  | Fathername |
++---------+--------+------+---------+------------+
+| 1971631 | harini | BBA  | chennai | trinadh    |
++---------+--------+------+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> alter table mentees add Marks int(3);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set Marks=95 where Dept="CSE";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set Marks=97 where Name="kavay"
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set Marks=95 where Dept="ECE";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set Marks=95 where Adress="chennai";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++---------+---------+------+------------+------------+-------+
+| Regno   | Name    | Dept | Adress     | Fathername | Marks |
++---------+---------+------+------------+------------+-------+
+| 1971631 | harini  | BBA  | chennai    | trinadh    |    95 |
+|  134567 | meghana | CSE  | guntur     | rahul      |    95 |
+| 1524631 | harika  | ECE  | hyderabad  | nani       |    95 |
+| 7236482 | kavay   | BA   | vijayawada | vijay      |    97 |
++---------+---------+------+------------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where Name like 'h%';
++---------+--------+------+-----------+------------+-------+
+| Regno   | Name   | Dept | Adress    | Fathername | Marks |
++---------+--------+------+-----------+------------+-------+
+| 1971631 | harini | BBA  | chennai   | trinadh    |    95 |
+| 1524631 | harika | ECE  | hyderabad | nani       |    95 |
++---------+--------+------+-----------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentees where Dept like '%S%';
++--------+---------+------+--------+------------+-------+
+| Regno  | Name    | Dept | Adress | Fathername | Marks |
++--------+---------+------+--------+------------+-------+
+| 134567 | meghana | CSE  | guntur | rahul      |    95 |
++--------+---------+------+--------+------------+-------+
+1 row in set (0.00 sec)
