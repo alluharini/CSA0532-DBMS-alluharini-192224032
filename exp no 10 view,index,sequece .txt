@@ -1,0 +1,111 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use simats;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_simats |
++------------------+
+| empdept          |
+| employees        |
+| mdept            |
+| mentees          |
+| mentees1         |
+| student          |
+| studepartment    |
++------------------+
+7 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++---------+---------+------+------------+------------+-------+---------+
+| Regno   | Name    | Dept | Adress     | Fathername | Marks | subject |
++---------+---------+------+------------+------------+-------+---------+
+| 1971631 | harini  | BBA  | chennai    | trinadh    |    95 | BIOEVS  |
+|  134567 | meghana | CSE  | guntur     | rahul      |    95 | NULL    |
+| 1524631 | harika  | ECE  | hyderabad  | nani       |    95 | PDSD    |
+| 7236482 | kavay   | BA   | vijayawada | vijay      |    97 | DBMS    |
++---------+---------+------+------------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> create view marks_view as select subject,marks from mentees;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select*from marks_view;
++---------+-------+
+| subject | marks |
++---------+-------+
+| BIOEVS  |    95 |
+| NULL    |    95 |
+| PDSD    |    95 |
+| DBMS    |    97 |
++---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create index subject on mentees(subject);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from mentees;
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table   | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| mentees |          1 | subject  |            1 | subject     | A         |
+4 |     NULL | NULL   | YES  | BTREE      |         |               |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+1 row in set (0.00 sec)
+
+
+mysql> create table per(peopleid int NOT NULL AUTO_INCREMENT,Name varchar(50),age int(3) , primary key(peopleid));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc per;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| peopleid | int(11)     | NO   | PRI | NULL    | auto_increment |
+| Name     | varchar(50) | YES  |     | NULL    |                |
+| age      | int(3)      | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table per AUTO_INCREMENT=500;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into per(Name,age) values ("harini" , 17);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from per;
++----------+--------+------+
+| peopleid | Name   | age  |
++----------+--------+------+
+|      500 | harini |   17 |
++----------+--------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into per(name,age) values ("annaya" , 38);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into per(name,age) values ("parnika" , 2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from per;
++----------+---------+------+
+| peopleid | Name    | age  |
++----------+---------+------+
+|      500 | harini  |   17 |
+|      501 | annaya  |   38 |
+|      502 | parnika |    2 |
++----------+---------+------+
+3 rows in set (0.00 sec)
