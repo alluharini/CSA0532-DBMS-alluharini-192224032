@@ -1,0 +1,155 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 41
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
+
+mysql> use simats;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_simats |
++------------------+
+| empdept          |
+| employees        |
+| marks            |
+| marks_view       |
+| mdept            |
+| mentees          |
+| mentees1         |
+| per              |
+| series           |
+| student          |
+| studepartment    |
++------------------+
+11 rows in set (0.00 sec)
+
+mysql> create table book_company(book_no int(5) , book_name varchar(30) , author_name varchar(30),cost int(4) , edition
+int(2));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into book_company values(200 , "DBMS
+    "> " , "deepa" , 1000 , 1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into book_company values(201 , "software" , "aruna" , 1200 , 2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book_company values(202 , "python" , "kailasari" , 5000 , 5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into book_company values(203 , "bioevs" , "murphy" , 1000 , 1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from book_company;
++---------+-----------+-------------+------+---------+
+| book_no | book_name | author_name | cost | edition |
++---------+-----------+-------------+------+---------+
+|     200 | DBMS
+     | deepa       | 1000 |       1 |
+|     201 | software  | aruna       | 1200 |       2 |
+|     202 | python    | kailasari   | 5000 |       5 |
+|     203 | bioevs    | murphy      | 1000 |       1 |
++---------+-----------+-------------+------+---------+
+4 rows in set (0.00 sec)
+
+
+mysql> update book_company set author_name="ted" where book_no=201;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from book_company;
++---------+-----------+-------------+------+---------+
+| book_no | book_name | author_name | cost | edition |
++---------+-----------+-------------+------+---------+
+|     200 | DBMS
+     | deepa       | 1000 |       1 |
+|     201 | software  | ted         | 1200 |       2 |
+|     202 | python    | kailasari   | 5000 |       5 |
+|     203 | bioevs    | murphy      | 1000 |       1 |
++---------+-----------+-------------+------+---------+
+4 rows in set (0.01 sec)
+
+mysql> create table authors(author_id int(4) , author_name varchar(30) , research_area varchar(30));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into authors value(200 , "newton" , "physics");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into authors value(201 , "gauss" , "maths");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into authors value(202 , "vanthoff" , "thermodynamics");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into authors value(203 , "de-broglie" , "optics");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from authors;
++-----------+-------------+----------------+
+| author_id | author_name | research_area  |
++-----------+-------------+----------------+
+|       200 | newton      | physics        |
+|       201 | gauss       | maths          |
+|       202 | vanthoff    | thermodynamics |
+|       203 | de-broglie  | optics         |
++-----------+-------------+----------------+
+4 rows in set (0.02 sec)
+
+mysql> select author_name from book_company where book_name="python";
++-------------+
+| author_name |
++-------------+
+| kailasari   |
++-------------+
+1 row in set (0.00 sec)
+
+
+mysql> select edition from book_company where book_name="bioevs";
++---------+
+| edition |
++---------+
+|       1 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> alter table book_company add published_year int(4);
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update book_company set published_year=1998 where book_no=202;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update book_company set published_year=1998 where book_no=203;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update book_company set published_year=1998 where book_no=200;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update book_company set published_year=1998 where book_no=201;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from book_company;
++---------+-----------+-------------+------+---------+----------------+
+| book_no | book_name | author_name | cost | edition | published_year |
++---------+-----------+-------------+------+---------+----------------+
+|     200 | DBMS
+     | deepa       | 1000 |       1 |           1998 |
+|     201 | software  | ted         | 1200 |       2 |           1998 |
+|     202 | python    | kailasari   | 5000 |       5 |           1998 |
+|     203 | bioevs    | murphy      | 1000 |       1 |           1998 |
++---------+-----------+-------------+------+---------+----------------+
+4 rows in set (0.00 sec)

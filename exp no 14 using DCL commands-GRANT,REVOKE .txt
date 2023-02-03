@@ -1,0 +1,99 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 32
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use simats;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_simats |
++------------------+
+| empdept          |
+| employees        |
+| marks_view       |
+| mdept            |
+| mentees          |
+| mentees1         |
+| per              |
+| series           |
+| student          |
+| studepartment    |
++------------------+
+10 rows in set (0.00 sec)
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| rollno   | int(11)     | NO   | PRI | 0       |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| Dob      | varchar(10) | YES  |     | NULL    |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
+| district | varchar(20) | YES  |     | NULL    |       |
+| dept     | varchar(5)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> create user harini;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> grant all on student to harini;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for harini;
++------------------------------------------------------------+
+| Grants for harini@%                                        |
++------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'harini'@'%'                         |
+| GRANT ALL PRIVILEGES ON `simats`.`student` TO 'harini'@'%' |
++------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke all on student from harini;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for harini;
++------------------------------------+
+| Grants for harini@%                |
++------------------------------------+
+| GRANT USAGE ON *.* TO 'harini'@'%' |
++------------------------------------+
+1 row in set (0.00 sec)
+
+
+mysql> grant select,update on per to harini;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for harini;
++--------------------------------------------------------+
+| Grants for harini@%                                    |
++--------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'harini'@'%'                     |
+| GRANT SELECT, UPDATE ON `simats`.`per` TO 'harini'@'%' |
++--------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke update on per from harini;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show grants for harini;
++------------------------------------------------+
+| Grants for harini@%                            |
++------------------------------------------------+
+| GRANT USAGE ON *.* TO 'harini'@'%'             |
+| GRANT SELECT ON `simats`.`per` TO 'harini'@'%' |
++------------------------------------------------+
+2 rows in set (0.00 sec)

@@ -1,0 +1,231 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 42
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use simats;
+Database changed
+mysql> create table patients(P_id int(4),P_name varchar(30),Disease_name varchar(20),Age int(3),p_no int(11));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc patients;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| P_id         | int(4)      | YES  |     | NULL    |       |
+| P_name       | varchar(30) | YES  |     | NULL    |       |
+| Disease_name | varchar(20) | YES  |     | NULL    |       |
+| Age          | int(3)      | YES  |     | NULL    |       |
+| p_no         | int(11)     | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into patients values(1,"harini","fever",17, 981798932);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into patients values(2,"kavya","sugar",18,873456);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into patients values(3,"latha","bp",27,87269722);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into patients values(4,"ayesha","fever",28,26456);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from patients;
++------+--------+--------------+------+-----------+
+| P_id | P_name | Disease_name | Age  | p_no      |
++------+--------+--------------+------+-----------+
+|    1 | harini | fever        |   17 | 981798932 |
+|    2 | kavya  | sugar        |   18 |    873456 |
+|    3 | latha  | bp           |   27 |  87269722 |
+|    4 | ayesha | fever        |   28 |     26456 |
++------+--------+--------------+------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> create table Doctor(D_id int,D_name varchar(30),Specialization varchar(30),phone int(12));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc doctor;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| D_id           | int(11)     | YES  |     | NULL    |       |
+| D_name         | varchar(30) | YES  |     | NULL    |       |
+| Specialization | varchar(30) | YES  |     | NULL    |       |
+| phone          | int(12)     | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into doctor values(1,"tejaswini","heart",683586);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into doctor values(2,"dharika","eyes",4567766);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into doctor values(3,"supuraja","dental",2345678);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into doctor values(4,"roshini","animals",234567);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from doctor;
++------+-----------+----------------+---------+
+| D_id | D_name    | Specialization | phone   |
++------+-----------+----------------+---------+
+|    1 | tejaswini | heart          |  683586 |
+|    2 | dharika   | eyes           | 4567766 |
+|    3 | supuraja  | dental         | 2345678 |
+|    4 | roshini   | animals        |  234567 |
++------+-----------+----------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select d_id,d_name from doctor;
++------+-----------+
+| d_id | d_name    |
++------+-----------+
+|    1 | tejaswini |
+|    2 | dharika   |
+|    3 | supuraja  |
+|    4 | roshini   |
++------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select *from Patients where Disease_name="Fever";
++------+--------+--------------+------+-----------+
+| P_id | P_name | Disease_name | Age  | p_no      |
++------+--------+--------------+------+-----------+
+|    1 | harini | fever        |   17 | 981798932 |
+|    4 | ayesha | fever        |   28 |     26456 |
++------+--------+--------------+------+-----------+
+2 rows in set (0.00 sec)
+
+mysql>  create table pharmacy(Medicine_id int,Medicine_name varchar(30),EXP DATE,cost int(12));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> alter table pharmacy add Disease varchar(20);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc pharmacy;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Medicine_id   | int(11)     | YES  |     | NULL    |       |
+| Medicine_name | varchar(30) | YES  |     | NULL    |       |
+| EXP           | date        | YES  |     | NULL    |       |
+| cost          | int(12)     | YES  |     | NULL    |       |
+| Disease       | varchar(20) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+
+mysql> insert into pharmacy values(127,"dolo",'2025-07-01',20,"fever");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into pharmacy values(1345,"paracetmol",'2025-05-01',10,"fever");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into pharmacy values(345,"gelusil",'2025-07-08',20,"cough");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into pharmacy values(3456,"ameed",'2025-04-01',15,"legpain");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from pharmacy;
++-------------+---------------+------------+------+---------+
+| Medicine_id | Medicine_name | EXP        | cost | Disease |
++-------------+---------------+------------+------+---------+
+|         127 | dolo          | 2025-07-01 |   20 | fever   |
+|        1345 | paracetmol    | 2025-05-01 |   10 | fever   |
+|         345 | gelusil       | 2025-07-08 |   20 | cough   |
+|        3456 | ameed         | 2025-04-01 |   15 | legpain |
++-------------+---------------+------------+------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select Medicine_name from pharmacy where Disease="FEVER";
++---------------+
+| Medicine_name |
++---------------+
+| dolo          |
+| paracetmol    |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> select cost from pharmacy where Medicine_name="dolo";
++------+
+| cost |
++------+
+|   20 |
++------+
+1 row in set (0.00 sec)
+
+mysql> create table Room_accomodation(Room_no int(4),Floor_no int(2),No_of_Beds int(3));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into Room_accomodation values(100,1,3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Room_accomodation values(101,1,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Room_accomodation values(201,2,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Room_accomodation values(301,3,3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from Room_accomodation;
++---------+----------+------------+
+| Room_no | Floor_no | No_of_Beds |
++---------+----------+------------+
+|     100 |        1 |          3 |
+|     101 |        1 |          2 |
+|     201 |        2 |          2 |
+|     301 |        3 |          3 |
++---------+----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table Room_accomodation add Cost_per_Day int(4);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update Room_accomodation set Cost_per_Day=1000 where Floor_no=1;
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update Room_accomodation set Cost_per_Day=500 where Floor_no=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update Room_accomodation set Cost_per_Day=1500 where Floor_no=3
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from room_accomodation;
++---------+----------+------------+--------------+
+| Room_no | Floor_no | No_of_Beds | Cost_per_Day |
++---------+----------+------------+--------------+
+|     100 |        1 |          3 |         1000 |
+|     101 |        1 |          2 |         1000 |
+|     201 |        2 |          2 |          500 |
+|     301 |        3 |          3 |         1500 |
++---------+----------+------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select No_of_Beds from Room_accomodation where Room_no=101;
++------------+
+| No_of_Beds |
++------------+
+|          2 |
++------------+
+1 row in set (0.00 sec)
